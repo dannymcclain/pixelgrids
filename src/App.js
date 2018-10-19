@@ -49,12 +49,14 @@ class App extends Component {
       calculated: true
     });
   };
-
+  renderColumns = () => {
+    console.log('hi');
+}
   render() {
     return (
       <div className="App">
         <h1>Pixel Grids</h1>
-        <main>
+        <section className="grid-inputs">
           <div className="inputWrap">
             <label>Total Width</label>
             <input
@@ -103,15 +105,32 @@ class App extends Component {
               <option value="3">3</option>
             </select>
           </div>
-        </main>
+        </section>
         <section className="grid-layouts">
           {this.state.gridLayout.length > 0
             ? this.state.gridLayout.map(({ column, gutter, margin }) => {
                 return (
-                  <div className="layout">
-                    <p>
-                      {column}, {gutter}, {margin}
-                    </p>
+                  <div className="layout" key={'Layout '+ column}>
+                  <div className="specs">
+                  <p>Column: <span className="value-text">{column}</span></p>
+                  <p>Gutter: <span className="value-text">{gutter}</span></p>
+                  <p>Margin: <span className="value-text">{margin}</span></p>
+                  </div>
+                      <div className="grid-preview">
+                        <div className="margin" style={{width: margin + 'px'}}>M</div>
+                          {
+                            [...Array(this.state.columns)].map((_, index) => {
+                              return (
+                              <React.Fragment key={`Column${index}`}>
+                              <div className="column" style={{width: column + 'px'}}>C</div>
+                              {this.state.columns-1 > index && <div className="gutter" style={{width: gutter + 'px'}}>G</div>}
+                              </React.Fragment>
+                            )})
+                            
+                          }
+                        <div className="margin" style={{width: margin + 'px'}}>M</div>
+                        </div>
+
                   </div>
                 );
               })

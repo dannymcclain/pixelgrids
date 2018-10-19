@@ -12,3 +12,62 @@ body {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
     monospace;
 }
+
+.App {
+  margin: 60px;
+}
+
+.grid-inputs {
+  margin-bottom: 40px;
+}
+
+.grid-layouts{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.specs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+}
+
+.specs p {
+  margin-right: 20px;
+}
+
+.specs p .value-text {
+  font-weight: bold;
+}
+
+.grid-preview {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.margin {
+  flex-basis: auto;
+  height: 40px;
+  background: #f2f2f2;
+}
+
+.column {
+  flex-basis: auto;
+  height: 40px;
+  background: red;
+}
+
+.gutter {
+  flex-basis: auto;
+  height: 40px;
+  background: #eee;
+}
