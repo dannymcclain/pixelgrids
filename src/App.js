@@ -15,7 +15,17 @@ class App extends Component {
   }
   componentDidMount() {
     this.findGrids();
+    document.addEventListener('keydown', event => {
+      if (event.code === 'Enter') {
+        this.findGrids();
+      }
+    });
   }
+
+
+componentWillUnmount() {
+  document.addEventListener('keydown');
+}
 
   handleChange = event => {
     const { value, name } = event.target;
@@ -42,7 +52,7 @@ class App extends Component {
       columnWidth = getColumnWidth(gutter);
       margin = this.state.marginRatio * gutter;
       if (columnWidth % 1 === 0) {
-        const grid = { column: columnWidth, gutter: gutter, margin: margin };
+        const grid = { column: columnWidth, gutter: gutter, margin: margin, columns: this.state.columns };
         gridLayout.push(grid);
       }
       gutter++;
@@ -65,7 +75,6 @@ class App extends Component {
               name="width"
               value={this.state.width}
               onChange={this.handleChange}
-              onBlur={this.findGrids}
               min="1"
             />
           </div>
@@ -76,7 +85,6 @@ class App extends Component {
               name="columns"
               value={this.state.columns}
               onChange={this.handleChange}
-              onBlur={this.findGrids}
               min="1"
             />
           </div>
@@ -87,7 +95,6 @@ class App extends Component {
               name="minGutter"
               value={this.state.minGutter}
               onChange={this.handleChange}
-              onBlur={this.findGrids}
             />
           </div>
           <div className="input-wrap">
@@ -96,7 +103,6 @@ class App extends Component {
               name="marginRatio"
               value={this.state.marginRatio}
               onChange={this.handleChange}
-              onBlur={this.findGrids}
             >
               <option value="0">0</option>
               <option value="0.5">0.5</option>
@@ -106,10 +112,11 @@ class App extends Component {
               <option value="3">3</option>
             </select>
           </div>
+          <button onClick={this.findGrids}>Calculate</button>
         </section>
         <section className="grid-layouts">
           {this.state.gridLayout.length > 0
-            ? this.state.gridLayout.map(({ column, gutter, margin }) => {
+            ? this.state.gridLayout.map(({ columns, column, gutter, margin }) => {
                 return (
                   <div className="layout" key={'Layout '+ column}>
                   <div className="specs">
@@ -120,11 +127,11 @@ class App extends Component {
                       <div className="grid-preview">
                         <div className="margin" style={{width: margin + 'px'}}></div>
                           {
-                            [...Array(parseInt(this.state.columns))].map((_, index) => {
+                            [...Array(parseInt(columns))].map((_, index) => {
                               return (
                               <React.Fragment key={`Column${index}`}>
                               <div className="column" style={{width: column + 'px'}}></div>
-                              {this.state.columns-1 > index && <div className="gutter" style={{width: gutter + 'px'}}></div>}
+                              {columns-1 > index && <div className="gutter" style={{width: gutter + 'px'}}></div>}
                               </React.Fragment>
                             )})
                             
