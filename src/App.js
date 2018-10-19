@@ -7,11 +7,14 @@ class App extends Component {
     this.state = {
       width: 1200,
       columns: 12,
-      minGutter: 0,
+      minGutter: 20,
       marginRatio: 0,
       gridLayout: [],
       calculated: false
     };
+  }
+  componentDidMount() {
+    this.findGrids();
   }
 
   handleChange = event => {
@@ -49,15 +52,13 @@ class App extends Component {
       calculated: true
     });
   };
-  renderColumns = () => {
-    console.log('hi');
-}
+
   render() {
     return (
       <div className="App">
         <h1>Pixel Grids</h1>
         <section className="grid-inputs">
-          <div className="inputWrap">
+          <div className="input-wrap">
             <label>Total Width</label>
             <input
               type="number"
@@ -68,7 +69,7 @@ class App extends Component {
               min="1"
             />
           </div>
-          <div className="inputWrap">
+          <div className="input-wrap">
             <label>Columns</label>
             <input
               type="number"
@@ -79,7 +80,7 @@ class App extends Component {
               min="1"
             />
           </div>
-          <div className="inputWrap">
+          <div className="input-wrap">
             <label>Minimum Gutter</label>
             <input
               type="number"
@@ -89,7 +90,7 @@ class App extends Component {
               onBlur={this.findGrids}
             />
           </div>
-          <div className="inputWrap">
+          <div className="input-wrap">
             <label>Outter Margin Ratio</label>
             <select
               name="marginRatio"
@@ -117,24 +118,24 @@ class App extends Component {
                   <p>Margin: <span className="value-text">{margin}</span></p>
                   </div>
                       <div className="grid-preview">
-                        <div className="margin" style={{width: margin + 'px'}}>M</div>
+                        <div className="margin" style={{width: margin + 'px'}}></div>
                           {
-                            [...Array(this.state.columns)].map((_, index) => {
+                            [...Array(parseInt(this.state.columns))].map((_, index) => {
                               return (
                               <React.Fragment key={`Column${index}`}>
-                              <div className="column" style={{width: column + 'px'}}>C</div>
-                              {this.state.columns-1 > index && <div className="gutter" style={{width: gutter + 'px'}}>G</div>}
+                              <div className="column" style={{width: column + 'px'}}></div>
+                              {this.state.columns-1 > index && <div className="gutter" style={{width: gutter + 'px'}}></div>}
                               </React.Fragment>
                             )})
                             
                           }
-                        <div className="margin" style={{width: margin + 'px'}}>M</div>
+                        <div className="margin" style={{width: margin + 'px'}}></div>
                         </div>
 
                   </div>
                 );
               })
-            : this.state.calculated && (
+            : (
                 <div>
                   <p>No grid layouts. Bummer</p>
                 </div>

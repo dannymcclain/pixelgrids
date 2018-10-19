@@ -9,8 +9,9 @@
 }
 
 body {
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
-    monospace;
+  /* font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
+    monospace; */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .App {
@@ -18,7 +19,20 @@ body {
 }
 
 .grid-inputs {
+  display: flex;
+  flex-direction: row;
   margin-bottom: 40px;
+}
+
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.input-wrap label {
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .grid-layouts{
