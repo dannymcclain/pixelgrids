@@ -8,14 +8,28 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-color: #9900ff;
+}
+
 body {
   /* font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
     monospace; */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
 }
 
 .App {
   margin: 60px;
+}
+h1 {
+  font-weight: 800;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.number-of-grids {
+  color: var(--main-color);
 }
 
 .grid-inputs {
@@ -33,12 +47,27 @@ body {
 .input-wrap label {
   font-weight: bold;
   font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.input-wrap input {
+  outline: none;
+  border: 2px solid #f3f3f3;
+  border-radius: 5px;
+  padding: 8px 10px;
+}
+
+.input-wrap input:focus {
+  border: 2px solid var(--main-color);
 }
 
 .grid-layouts{
   display: flex;
   flex-direction: column;
+}
 
+h2 {
+  margin-bottom: 40px;
 }
 
 .layout {
@@ -69,19 +98,19 @@ body {
 }
 
 .margin {
-  flex-basis: auto;
+  flex: none;
   height: 40px;
   background: #f2f2f2;
 }
 
 .column {
-  flex-basis: auto;
+  flex: none;
   height: 40px;
-  background: red;
+  background: var(--main-color);
 }
 
 .gutter {
-  flex-basis: auto;
+  flex: none;
   height: 40px;
   background: #eee;
 }

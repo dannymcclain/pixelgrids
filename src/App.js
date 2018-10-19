@@ -66,7 +66,7 @@ componentWillUnmount() {
   render() {
     return (
       <div className="App">
-        <h1>Pixel Grids</h1>
+        <h1><span class="number-of-grids">{this.state.gridLayout.length}</span> Pixel Grids</h1>
         <section className="grid-inputs">
           <div className="input-wrap">
             <label>Total Width</label>
@@ -115,6 +115,7 @@ componentWillUnmount() {
           <button onClick={this.findGrids}>Calculate</button>
         </section>
         <section className="grid-layouts">
+        {/* <h2>{this.state.gridLayout.length} grids</h2> */}
           {this.state.gridLayout.length > 0
             ? this.state.gridLayout.map(({ columns, column, gutter, margin }) => {
                 return (
